@@ -1,4 +1,5 @@
 const API_KEY = "AIzaSyAQgMkTamhvG2QwAVPsUOe41_kQdqSbJ2Y"; // replace this
+
 const TOP_VIDEOS_PER_CATEGORY = 8;
 const SEARCH_MAX_PER_QUERY = 5;
 const VIDEO_BATCH_SIZE = 50;
@@ -99,7 +100,7 @@ async function runCategory(category){
   const durationParam = getVideoDurationParam(category);
 
   const channelList = channelsData[category] || [];
-  const topicList = topicsData[category] || [];
+  const topicList = topicsData["topics"].filter(t=>t.category===category || category==="casual").map(t=>t.name) || [];
 
   let collectedVideoMeta = {};
   let videoIdSet = new Set();
@@ -123,10 +124,18 @@ async function runCategory(category){
   // 1. Channel-driven
   for(const ch of channelList){
     try{
-      const q = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${encodeURIComponent(ch.id)}&type=video&order=viewCount&maxResults=${SEARCH_MAX_PER_QUERY}&videoDuration=${durationParam}`;
-      const data = await apiFetchJson(q);
-      if(data && data.items) collectFromSearchItems(data.items,"channel");
-    }catch(err){
+      if(ch.id && ch.id.trim()!==""){
+        // fetch by channelId
+        const q = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${encodeURIComponent(ch.id)}&type=video&order=viewCount&maxResults=${SEARCH_MAX_PER_QUERY}`;
+        const data = await apiFetchJson(q);
+        if(data && data.items) collectFromSearchItems(data.items,"channel");
+      } else if(ch.name && ch.name.trim()!==""){
+        // fallback: search by channel name as keyword
+        const q = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&maxResults=${SEARCH_MAX_PER_QUERY}&q=${encodeURIComponent(ch.name)}`;
+        const data = await apiFetchJson(q);
+        if(data && data.items) collectFromSearchItems(data.items,"channel-search");
+      }
+    } catch(err){
       console.warn("Channel fetch error", ch.name, err.message);
     }
   }
@@ -134,10 +143,10 @@ async function runCategory(category){
   // 2. Topic-driven
   for(const keyword of topicList){
     try{
-      const q = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&maxResults=${SEARCH_MAX_PER_QUERY}&videoDuration=${durationParam}&q=${encodeURIComponent(topicRefine + keyword)}`;
+      const q = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&maxResults=${SEARCH_MAX_PER_QUERY}&q=${encodeURIComponent(topicRefine + keyword)}`;
       const data = await apiFetchJson(q);
       if(data && data.items) collectFromSearchItems(data.items,"topic");
-    }catch(err){
+    } catch(err){
       console.warn("Topic fetch error", keyword, err.message);
     }
   }
