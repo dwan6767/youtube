@@ -1,45 +1,68 @@
 const API_KEY = "AIzaSyAQgMkTamhvG2QwAVPsUOe41_kQdqSbJ2Y"; // replace this
 
-async function searchTopic() {
-  const topic = document.getElementById('topicInput').value.trim();
-  if (!topic) return alert("Enter a topic first!");
 
-  document.getElementById('beginner-list').innerHTML = '';
-  document.getElementById('intermediate-list').innerHTML = '';
-  document.getElementById('advanced-list').innerHTML = '';
+// Categories with example keywords
+const categories = {
+  casual: ["8 bit guy", "Ben Eater", "hobby electronics"],
+  theory: ["electronics tutorial", "circuit theory", "signal processing"],
+  building: ["GreatScott!", "Arduino project", "DIY circuits"],
+  surprise: ["weird electronics", "retro tech", "unusual circuits"],
+  entertainment: ["electronics shorts", "fun gadgets", "tech hacks"]
+};
 
-  // Fetch videos for each difficulty
-  await fetchVideos(`${topic} for beginners`, 'beginner-list');
-  await fetchVideos(`${topic} intermediate tutorial`, 'intermediate-list');
-  await fetchVideos(`${topic} advanced guide`, 'advanced-list');
+let currentCategory = "casual";
+
+// Switch category
+function showCategory(category) {
+  currentCategory = category;
+  searchCategory();
 }
 
-async function fetchVideos(query, elementId) {
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+// Search videos for the current category
+async function searchCategory() {
+  const topicInput = document.getElementById('topicInput').value.trim();
+  const queryPrefix = topicInput ? topicInput + " " : "";
 
-  const res = await fetch(url);
-  const data = await res.json();
+  const container = document.getElementById('results');
+  container.innerHTML = '';
 
-  const container = document.getElementById(elementId);
-  if (!data.items) {
-    container.innerHTML = "<p>No videos found.</p>";
-    return;
+  for (let keyword of categories[currentCategory]) {
+    await fetchVideos(`${queryPrefix}${keyword}`, container);
   }
-
-  data.items.forEach(item => {
-    const videoId = item.id.videoId;
-    const title = item.snippet.title;
-    const thumbnail = item.snippet.thumbnails.medium.url;
-
-    const videoCard = `
-      <div class="video-card">
-        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-          <img src="${thumbnail}" alt="${title}">
-          <p>${title}</p>
-        </a>
-      </div>
-    `;
-
-    container.innerHTML += videoCard;
-  });
 }
+
+// Fetch videos using YouTube API
+async function fetchVideos(query, container) {
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+  
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.items || data.items.length === 0) {
+      container.innerHTML += "<p>No videos found.</p>";
+      return;
+    }
+
+    data.items.forEach(item => {
+      const videoId = item.id.videoId;
+      const title = item.snippet.title;
+      const thumbnail = item.snippet.thumbnails.medium.url;
+
+      const videoCard = `
+        <div class="video-card">
+          <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
+            <img src="${thumbnail}" alt="${title}">
+            <p>${title}</p>
+          </a>
+        </div>
+      `;
+      container.innerHTML += videoCard;
+    });
+  } catch (err) {
+    console.error("Error fetching videos:", err);
+  }
+}
+
+// Load initial category
+searchCategory();

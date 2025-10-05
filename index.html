@@ -3,33 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zero to Hero YouTube Explorer</title>
+  <title>EE Geek Hub</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎓 Zero to Hero: YouTube Explorer</h1>
+  <h1>⚡ EE Geek Hub</h1>
+  <p>Explore electronics & electrical engineering videos, hobbyist to pro!</p>
 
+  <!-- Category Tabs -->
+  <nav id="category-nav">
+    <button onclick="showCategory('casual')">Casual</button>
+    <button onclick="showCategory('theory')">Theory</button>
+    <button onclick="showCategory('building')">Building</button>
+    <button onclick="showCategory('surprise')">Surprise</button>
+    <button onclick="showCategory('entertainment')">Entertainment</button>
+  </nav>
+
+  <!-- Optional Topic Search -->
   <div class="search-box">
-    <input type="text" id="topicInput" placeholder="Enter a topic (e.g. Python, Web Dev)">
-    <button onclick="searchTopic()">Search</button>
+    <input type="text" id="topicInput" placeholder="Enter topic (optional)">
+    <button onclick="searchCategory()">Search</button>
   </div>
 
-  <div id="results">
-    <section id="beginner">
-      <h2>🟢 Beginner</h2>
-      <div class="video-list" id="beginner-list"></div>
-    </section>
-
-    <section id="intermediate">
-      <h2>🟡 Intermediate</h2>
-      <div class="video-list" id="intermediate-list"></div>
-    </section>
-
-    <section id="advanced">
-      <h2>🔴 Advanced</h2>
-      <div class="video-list" id="advanced-list"></div>
-    </section>
-  </div>
+  <!-- Video Container -->
+  <div id="results" class="video-list"></div>
 
   <script src="main.js"></script>
 </body>
