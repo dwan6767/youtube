@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EE Geek Hub — Curated Videos</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EETube - Electronics & DIY Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <h1>⚡ EE Geek Hub</h1>
-    <p class="subtitle">Curated electronics videos — channel + topic driven, ranked by quality</p>
+  <header>
+    <h1>EETube</h1>
+    <input type="text" id="topicInput" placeholder="Search Electronics, DIY, Arduino..." />
+    <button onclick="searchTopic()">Search</button>
   </header>
 
-  <main class="container">
-    <nav id="category-nav" class="tabs"></nav>
-
-    <div class="controls">
-      <input id="topicInput" placeholder="Optional: refine by topic (e.g. 'oscilloscope')" />
-      <button id="refreshBtn">Refresh</button>
-      <label class="proxy-toggle">
-        <input id="proxyCheckbox" type="checkbox" />
-        Use server proxy (recommended)
-      </label>
-    </div>
-
-    <div id="status" class="status">Loading channels & topics…</div>
-
-    <section id="results" class="grid"></section>
+  <main>
+    <section>
+      <h2>Casual</h2>
+      <div id="casual-list" class="video-list"></div>
+    </section>
+    <section>
+      <h2>Theory</h2>
+      <div id="theory-list" class="video-list"></div>
+    </section>
+    <section>
+      <h2>Building</h2>
+      <div id="building-list" class="video-list"></div>
+    </section>
+    <section>
+      <h2>Surprise</h2>
+      <div id="surprise-list" class="video-list"></div>
+    </section>
+    <section>
+      <h2>Entertainment</h2>
+      <div id="entertainment-list" class="video-list"></div>
+    </section>
   </main>
-
-  <footer class="footer">
-    <small>Edit <code>channels.json</code> & <code>topics.json</code> to customize channels/topics.</small>
-  </footer>
 
   <script src="main.js"></script>
 </body>
 </html>
-
