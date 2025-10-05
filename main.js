@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyAQgMkTamhvG2QwAVPsUOe41_kQdqSbJ2Y"; // replace this
+const API_KEY = "AIzaSyCTmURU_Px4fSlPs7TYowVv-f-L0KgaSH4"; // replace this
 // Categories keywords & weights
 const categories = {
   casual: { keywords: ["electronics","DIY","retro","fun"], threshold: 0.7 },
