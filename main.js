@@ -1,5 +1,4 @@
 const API_KEY = "AIzaSyAQgMkTamhvG2QwAVPsUOe41_kQdqSbJ2Y"; // replace this
-
 const TOP_VIDEOS_PER_CATEGORY = 8;
 const SEARCH_MAX_PER_QUERY = 5;
 const VIDEO_BATCH_SIZE = 50;
