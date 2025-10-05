@@ -1,4 +1,4 @@
-const API_KEY = "YOUR_API_KEY"; // replace this
+const API_KEY = "AIzaSyAQgMkTamhvG2QwAVPsUOe41_kQdqSbJ2Y"; // replace this
 
 async function searchTopic() {
   const topic = document.getElementById('topicInput').value.trim();
