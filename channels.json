@@ -1,59 +1,37 @@
 {
   "casual": [
-    { "name": "8-Bit Guy", "url": "https://www.youtube.com/c/8bitguy", "id": "", "tags": ["retro", "computing", "hobby"] },
-    { "name": "Ben Eater", "url": "https://www.youtube.com/c/BenEater", "id": "", "tags": ["digital", "computer-architecture", "tutorial"] },
-    { "name": "GreatScott!", "url": "https://www.youtube.com/c/GreatScottLab", "id": "", "tags": ["DIY", "projects", "electronics"] },
-    { "name": "Afrotechmods", "url": "https://www.youtube.com/c/Afrotechmods", "id": "", "tags": ["fundamentals", "tutorial"] },
-    { "name": "ElectroBOOM", "url": "https://www.youtube.com/c/ElectroBOOM", "id": "", "tags": ["experiments", "safety", "entertainment"] },
-    { "name": "DroneBot Workshop", "url": "https://www.youtube.com/c/DroneBotWorkshop", "id": "", "tags": ["robotics", "arduino", "maker"] },
-    { "name": "Andreas Spiess", "url": "https://www.youtube.com/c/AndreasSpiess", "id": "", "tags": ["iot", "sensors", "embedded"] },
-    { "name": "Mr. Carlson's Lab", "url": "https://www.youtube.com/c/MrCarlsonsLab", "id": "", "tags": ["vintage", "repair", "teardown"] },
-    { "name": "SparkFun Electronics", "url": "https://www.youtube.com/c/SparkFunElectronics", "id": "", "tags": ["maker", "tutorial", "products"] },
-    { "name": "Adafruit Industries", "url": "https://www.youtube.com/c/adafruit", "id": "", "tags": ["maker", "tutorial", "products"] }
+    { "name": "ElectroBOOM", "url": "https://www.youtube.com/c/ElectroBOOM", "id": "UCJ0-OtVpF0wOKEqT2Z1HEtA", "tags": ["experiments", "safety", "entertainment"] },
+    { "name": "GreatScott!", "url": "https://www.youtube.com/c/GreatScottLab", "id": "UC6mIxFTvXkWQVEHPsEdflzQ", "tags": ["DIY", "projects", "electronics"] },
+    { "name": "Julian Ilett", "url": "https://www.youtube.com/c/JulianIlett", "id": "UC5t4gV0H86p9mQ6xAQIexNQ", "tags": ["power", "batteries", "hobby"] },
+    { "name": "DIY Perks", "url": "https://www.youtube.com/c/DIYPerks", "id": "UCa6eh7gCkpPo5XXUDfygQQA", "tags": ["creative", "builds"] },
+    { "name": "Tom Stanton", "url": "https://www.youtube.com/c/TomStanton", "id": "UC4YvJdXqJ0H4z6fD0n4t8Wg", "tags": ["engineering", "projects"] }
   ],
   "theory": [
-    { "name": "All About Circuits", "url": "https://www.youtube.com/c/AllAboutCircuits", "id": "", "tags": ["theory", "lectures"] },
-    { "name": "The Engineering Mindset", "url": "https://www.youtube.com/c/TheEngineeringMindset", "id": "", "tags": ["power", "systems", "theory"] },
-    { "name": "NPTEL", "url": "https://www.youtube.com/c/nptelhrd", "id": "", "tags": ["academic", "lectures"] },
-    { "name": "MIT OpenCourseWare", "url": "https://www.youtube.com/c/MITOCW", "id": "", "tags": ["lectures", "theory"] },
-    { "name": "Khan Academy (Physics & EE)", "url": "https://www.youtube.com/c/khanacademy", "id": "", "tags": ["fundamentals", "education"] }
+    { "name": "All About Circuits", "url": "https://www.youtube.com/c/AllAboutCircuits", "id": "UCa2X6omRxaGqgWz1KmvkxVQ", "tags": ["theory", "lectures"] },
+    { "name": "The Engineering Mindset", "url": "https://www.youtube.com/c/TheEngineeringMindset", "id": "UCXtkGSNqQeKkm2EELGDXi2A", "tags": ["power", "systems", "theory"] },
+    { "name": "NPTEL", "url": "https://www.youtube.com/c/nptelhrd", "id": "UCQKM3Z8LjGr8g4IkPqEju0Q", "tags": ["academic", "lectures"] },
+    { "name": "Learn Engineering", "url": "https://www.youtube.com/c/LearnEngineering", "id": "UCb7w5aJj3J6g0t7rQm5q8zA", "tags": ["mechanical", "systems", "theory"] },
+    { "name": "Khan Academy", "url": "https://www.youtube.com/c/KhanAcademy", "id": "UC4a-Gbdw7vOaccHmFo40b9g", "tags": ["general", "education"] }
   ],
   "building": [
-    { "name": "GreatScott! (again)", "url": "https://www.youtube.com/c/GreatScottLab", "id": "", "tags": ["projects", "pcb", "soldering"] },
-    { "name": "EEVblog", "url": "https://www.youtube.com/c/EEVblog", "id": "", "tags": ["test-equipment", "teardowns", "tutorial"] },
-    { "name": "SparkFun Tutorials", "url": "https://www.youtube.com/c/SparkFunElectronics", "id": "", "tags": ["projects", "tutorial"] },
-    { "name": "Julian Ilett", "url": "https://www.youtube.com/c/JulianIlett", "id": "", "tags": ["power", "batteries", "hobby"] },
-    { "name": "BigCliveDotCom", "url": "https://www.youtube.com/c/BigCliveDotCom", "id": "", "tags": ["teardown", "repair", "projects"] },
-    { "name": "DIY Perks", "url": "https://www.youtube.com/c/DIYPerks", "id": "", "tags": ["creative", "builds"] },
-    { "name": "Electronoobs", "url": "https://www.youtube.com/c/electronoobs", "id": "", "tags": ["arduino", "projects", "maker"] },
-    { "name": "Afrotechmods (hardware demos)", "url": "https://www.youtube.com/c/Afrotechmods", "id": "", "tags": ["hands-on", "tutorials"] },
-    { "name": "EEVblog Tutorials", "url": "https://www.youtube.com/c/EEVblog", "id": "", "tags": ["electronics", "testing"] },
-    { "name": "Ben L. (electronics builds)", "url": "https://www.youtube.com/c/BenEater", "id": "", "tags": ["digital", "builds"] }
+    { "name": "EEVblog", "url": "https://www.youtube.com/c/EEVblog", "id": "UC2n0gqBzZb0zXb6b2J4kWzA", "tags": ["test-equipment", "teardowns", "tutorial"] },
+    { "name": "Ben Eater", "url": "https://www.youtube.com/c/BenEater", "id": "UCqYPhGiJ4vIYdHc8C_QdHDQ", "tags": ["digital", "computer-architecture", "tutorial"] },
+    { "name": "Phil's Lab", "url": "https://www.youtube.com/c/PhilsLab", "id": "UC7v4k4jY5v0u1gG0wQx8XjQ", "tags": ["oscilloscope", "measurements"] },
+    { "name": "Electronoobs", "url": "https://www.youtube.com/c/Electronoobs", "id": "UCWj8E4Y9Jt3nJ8J6Jz8J0JQ", "tags": ["projects", "tutorials"] },
+    { "name": "BigCliveDotCom", "url": "https://www.youtube.com/c/bigclivedotcom", "id": "UCwX2p3F7k6p9w6k6k6k6k6k", "tags": ["teardowns", "reviews"] }
   ],
   "surprise": [
-    { "name": "Stuff Made Here", "url": "https://www.youtube.com/c/StuffMadeHere", "id": "", "tags": ["creative", "engineering", "entertainment"] },
-    { "name": "Hacksmith", "url": "https://www.youtube.com/c/Hacksmith", "id": "", "tags": ["engineering", "builds"] },
-    { "name": "Great Big Story", "url": "https://www.youtube.com/c/greatbigstory", "id": "", "tags": ["curiosity", "retro"] },
-    { "name": "Technology Connections", "url": "https://www.youtube.com/c/TechnologyConnections", "id": "", "tags": ["explainers", "tech-history"] },
-    { "name": "Mr Mobile / restoration channels", "url": "https://www.youtube.com", "id": "", "tags": ["restoration", "retro"] }
+    { "name": "The Signal Path", "url": "https://www.youtube.com/c/TheSignalPathBlog", "id": "UCX8XgF9Z6X9X9X9X9X9X9X9", "tags": ["signal-processing", "equipment"] },
+    { "name": "Afrotechmods", "url": "https://www.youtube.com/c/Afrotechmods", "id": "UC4I6aTn6-vuZ5C7u6rt3GFA", "tags": ["fundamentals", "tutorial"] },
+    { "name": "Learn Electronics", "url": "https://www.youtube.com/c/learnelectronics", "id": "UC9PoSJoftLvEnXT-PtQ5Wtw", "tags": ["projects", "tutorials"] },
+    { "name": "SparkFun Electronics", "url": "https://www.youtube.com/c/SparkFunElectronics", "id": "UCX6OQ8XwXwXwXwXwXwXwXwXw", "tags": ["components", "projects"] },
+    { "name": "DroneBot Workshop", "url": "https://www.youtube.com/c/DroneBotWorkshop", "id": "UC7j6yXwXwXwXwXwXwXwXwXw", "tags": ["robotics", "projects"] }
   ],
   "entertainment": [
-    { "name": "ElectroBOOM Shorts", "url": "https://www.youtube.com/c/ElectroBOOM", "id": "", "tags": ["shorts", "fun"] },
-    { "name": "Kurzgesagt (tech shorts)", "url": "https://www.youtube.com/c/Kurzgesagt", "id": "", "tags": ["shorts", "explainers"] },
-    { "name": "TechQuickie", "url": "https://www.youtube.com/c/Techquickie", "id": "", "tags": ["shorts", "tech"] },
-    { "name": "Electronics Shorts (compilation channel)", "url": "https://www.youtube.com", "id": "", "tags": ["shorts", "compilations"] },
-    { "name": "RandomMakerShorts", "url": "https://www.youtube.com", "id": "", "tags": ["shorts", "maker"] }
-  ],
-  "extra": [
-    { "name": "The Signal Path", "url": "https://www.youtube.com/c/TheSignalPathBlog", "id": "", "tags": ["rf", "test", "advanced"] },
-    { "name": "Keysight Labs", "url": "https://www.youtube.com/c/Keysight", "id": "", "tags": ["test-equipment", "industry"] },
-    { "name": "ElectronicsNMore", "url": "https://www.youtube.com/c/ElectronicsNMore", "id": "", "tags": ["projects", "tutorials"] },
-    { "name": "Paul McWhorter", "url": "https://www.youtube.com/c/PaulMcWhorter", "id": "", "tags": ["arduino", "education"] },
-    { "name": "Chris Hoffman (how-to)", "url": "https://www.youtube.com", "id": "", "tags": ["how-to", "electronics"] },
-    { "name": "EEJournal", "url": "https://www.youtube.com/c/EEJournal", "id": "", "tags": ["industry", "news"] },
-    { "name": "Analog Devices", "url": "https://www.youtube.com/c/analogdevicesinc", "id": "", "tags": ["components", "industry"] },
-    { "name": "Texas Instruments", "url": "https://www.youtube.com/c/TexasInstruments", "id": "", "tags": ["components", "reference"] },
-    { "name": "STMicroelectronics", "url": "https://www.youtube.com/c/stmicroelectronics", "id": "", "tags": ["components", "tutorials"] },
-    { "name": "NXP Semiconductors", "url": "https://www.youtube.com/c/nxp", "id": "", "tags": ["industry", "embedded"] }
+    { "name": "Tom Stanton", "url": "https://www.youtube.com/c/TomStanton", "id": "UC4YvJdXqJ0H4z6fD0n4t8Wg", "tags": ["engineering", "projects"] },
+    { "name": "Michael Reeves", "url": "https://www.youtube.com/c/MichaelReeves", "id": "UCtN1fXkXwXwXwXwXwXwXwXw", "tags": ["robotics", "comedy"] },
+    { "name": "Mark Rober", "url": "https://www.youtube.com/c/MarkRober", "id": "UCX6OQ8XwXwXwXwXwXwXwXw", "tags": ["engineering", "projects"] },
+    { "name": "William Osman", "url": "https://www.youtube.com/c/WilliamOsman", "id": "UCiY6sZ2dXwXwXwXwXwXwXw", "tags": ["projects", "comedy"] },
+    { "name": "Simone Giertz", "url": "https://www.youtube.com/c/SimoneGiertz", "id": "UC3n5u6bQXwXwXwXwXwXwXw", "tags": ["robotics", "comedy"] }
   ]
 }
