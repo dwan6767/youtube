@@ -1,17 +1,5 @@
 const API_KEY = "AIzaSyAQgMkTamhvG2QwAVPsUOe41_kQdqSbJ2Y"; // replace this
 
-/* main.js
-   Hybrid: channel-driven + topic-driven -> score by like/view ratio + views -> display top results
-   Two modes:
-     - USE_PROXY = false -> set API_KEY below (frontend usage — key visible)
-     - USE_PROXY = true -> the code will call /api/youtube?endpoint=<endpoint>&params... (recommended)
-*/
-
-/* ========================= CONFIG ========================= */
- // <-- Replace if NOT using proxy
-
-let USE_PROXY = false;                // set true if using serverless proxy
-
 const TOP_VIDEOS_PER_CATEGORY = 8;
 const SEARCH_MAX_PER_QUERY = 5;
 const VIDEO_BATCH_SIZE = 50;
@@ -26,9 +14,7 @@ const resultsEl = document.getElementById("results");
 const navEl = document.getElementById("category-nav");
 const topicInput = document.getElementById("topicInput");
 const refreshBtn = document.getElementById("refreshBtn");
-const proxyCheckbox = document.getElementById("proxyCheckbox");
 
-proxyCheckbox.addEventListener("change", e => USE_PROXY = e.target.checked);
 refreshBtn.addEventListener("click", () => runCategory(currentCategory));
 
 /* ------------------- INIT ------------------- */
@@ -74,17 +60,10 @@ async function fetchJSON(url){
 }
 
 async function apiFetchJson(pathAndQuery){
-  if(USE_PROXY){
-    const proxyUrl = `/api/youtube?target=${encodeURIComponent(pathAndQuery)}`;
-    const r = await fetch(proxyUrl);
-    if(!r.ok) throw new Error(`Proxy error: ${r.status}`);
-    return r.json();
-  } else {
-    const url = pathAndQuery.includes("key=") ? pathAndQuery : `${pathAndQuery}${pathAndQuery.includes("?") ? "&" : "?"}key=${encodeURIComponent(API_KEY)}`;
-    const r = await fetch(url);
-    if(!r.ok) throw new Error(`YouTube API error ${r.status}`);
-    return r.json();
-  }
+  const url = pathAndQuery.includes("key=") ? pathAndQuery : `${pathAndQuery}${pathAndQuery.includes("?") ? "&" : "?"}key=${encodeURIComponent(API_KEY)}`;
+  const r = await fetch(url);
+  if(!r.ok) throw new Error(`YouTube API error ${r.status}`);
+  return r.json();
 }
 
 function capitalize(s){ return s && s[0].toUpperCase() + s.slice(1); }
@@ -95,19 +74,24 @@ function formatNumber(n){
   return n.toString();
 }
 
-/* ------------------- CATEGORY DURATION ------------------- */
+/* ------------------- DURATION ------------------- */
+function parseISO8601Duration(duration) {
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if(!match) return 0;
+  const hours = parseInt(match[1]||0,10);
+  const minutes = parseInt(match[2]||0,10);
+  const seconds = parseInt(match[3]||0,10);
+  return hours*60 + minutes + (seconds/60);
+}
+
 function getVideoDurationParam(category){
   switch(category){
-    case "entertainment": return "short";   // shorts <4min
-    case "building":
-    case "theory":
-    case "casual":
-    case "surprise": return "medium";       // medium/long
-    default: return "any";
+    case "entertainment": return "any";   // will filter after fetch
+    default: return "any";                 // other categories filter after fetch
   }
 }
 
-/* ------------------- CORE: Hybrid Fetch + Rank ------------------- */
+/* ------------------- CORE ------------------- */
 async function runCategory(category){
   status(`Fetching best videos for "${capitalize(category)}"...`);
   resultsEl.innerHTML = "";
@@ -188,13 +172,12 @@ async function runCategory(category){
     }
   }
 
-  // 4. Filter by duration again (safety)
+  // 4. Filter by duration
   const filteredVideos = Object.values(allVideoDetails).filter(v=>{
     if(!v.duration) return true;
-    const m = v.duration.match(/PT(\d+)M/);
-    const minutes = m ? parseInt(m[1],10) : 0;
-    if(category==="entertainment") return minutes < 4;
-    return minutes >= 4;
+    const mins = parseISO8601Duration(v.duration);
+    if(category==="entertainment") return mins <= 4;
+    return mins > 4;
   });
 
   if(filteredVideos.length===0){
@@ -252,6 +235,8 @@ function buildCard(v,rank){
   return el;
 }
 
+/* ------------------- STATUS ------------------- */
+function status(msg){ if(statusEl) statusEl.textContent = msg; }
+
 /* ------------------- BOOT ------------------- */
 init();
-
