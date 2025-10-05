@@ -1,5 +1,7 @@
 const API_KEY = "AIzaSyCTmURU_Px4fSlPs7TYowVv-f-L0KgaSH4"; // replace this
-// Categories keywords & weights
+
+
+// Category keywords & thresholds
 const categories = {
   casual: { keywords: ["electronics","DIY","retro","fun"], threshold: 0.7 },
   theory: { keywords: ["electronics","op-amps","transistors","circuit","embedded","tutorial","lecture"], threshold: 0.6 },
@@ -8,7 +10,7 @@ const categories = {
   entertainment: { keywords: ["electronics","fun","casual","shorts","hacks"], threshold: 0.7 }
 };
 
-// Whitelisted channels (sample, expand as needed)
+// Whitelisted channels (sample; expand as needed)
 const whitelistedChannels = [
   "UCJ0-OtVpF0wOKEqT2Z1HEtA", // ElectroBOOM
   "UC6mIxFTvXkWQVEHPsEdflzQ", // GreatScott!
@@ -25,53 +27,64 @@ async function searchTopic() {
     document.getElementById(`${cat}-list`).innerHTML = "";
   });
 
-  // Search for each category
+  // Loop through categories
   for(const cat in categories){
-    const results = await fetchVideos(topic, cat);
-    renderVideos(results, cat);
+    try {
+      const videos = await fetchVideos(topic, cat);
+      renderVideos(videos, cat);
+    } catch(err){
+      console.error(`Error fetching ${cat}:`, err);
+    }
   }
 }
 
+// Fetch videos from YouTube API
 async function fetchVideos(query, category){
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=15&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${encodeURIComponent(query)}&key=${API_KEY}`;
   const res = await fetch(url);
   const data = await res.json();
+
   if(!data.items) return [];
 
-  // Filter using weighted score
+  // Filter by weighted score
   return data.items.filter(video => {
     const score = calculateScore(video, category);
     return score >= categories[category].threshold;
   });
 }
 
+// Calculate weighted score per category
 function calculateScore(video, category){
   let score = 0;
-  const keywords = categories[category].keywords;
   const title = video.snippet.title.toLowerCase();
   const desc = video.snippet.description.toLowerCase();
   const tags = video.snippet.tags ? video.snippet.tags.map(t=>t.toLowerCase()) : [];
+  const keywords = categories[category].keywords;
 
-  // Primary checks
+  // Primary check: electronics in title/desc/tags
   if(title.includes("electronics")) score += 0.5;
   if(desc.includes("electronics")) score += 0.2;
   if(tags.includes("electronics")) score += 0.3;
 
-  // Secondary keyword matches
-  keywords.forEach(kw=>{
-    if(title.includes(kw) || desc.includes(kw) || tags.includes(kw)){
-      score += 0.1;
-    }
+  // Secondary keywords
+  keywords.forEach(kw => {
+    if(title.includes(kw) || desc.includes(kw) || tags.includes(kw)) score += 0.1;
   });
 
-  // Channel whitelist bonus
+  // Whitelisted channels
   if(whitelistedChannels.includes(video.snippet.channelId)) score += 0.2;
 
   return score;
 }
 
+// Render video cards
 function renderVideos(videos, category){
   const container = document.getElementById(`${category}-list`);
+  if(!videos.length){
+    container.innerHTML = "<p>No videos found.</p>";
+    return;
+  }
+
   videos.forEach(video => {
     const videoId = video.id.videoId;
     const title = video.snippet.title;
