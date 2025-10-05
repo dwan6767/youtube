@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EE Geek Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EE Geek Hub — Curated Videos</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>⚡ EE Geek Hub</h1>
-  <p>Explore electronics & electrical engineering videos, hobbyist to pro!</p>
+  <header class="topbar">
+    <h1>⚡ EE Geek Hub</h1>
+    <p class="subtitle">Curated electronics videos — channel + topic driven, ranked by quality</p>
+  </header>
 
-  <!-- Category Tabs -->
-  <nav id="category-nav">
-    <button onclick="showCategory('casual')">Casual</button>
-    <button onclick="showCategory('theory')">Theory</button>
-    <button onclick="showCategory('building')">Building</button>
-    <button onclick="showCategory('surprise')">Surprise</button>
-    <button onclick="showCategory('entertainment')">Entertainment</button>
-  </nav>
+  <main class="container">
+    <nav id="category-nav" class="tabs"></nav>
 
-  <!-- Optional Topic Search -->
-  <div class="search-box">
-    <input type="text" id="topicInput" placeholder="Enter topic (optional)">
-    <button onclick="searchCategory()">Search</button>
-  </div>
+    <div class="controls">
+      <input id="topicInput" placeholder="Optional: refine by topic (e.g. 'oscilloscope')" />
+      <button id="refreshBtn">Refresh</button>
+      <label class="proxy-toggle">
+        <input id="proxyCheckbox" type="checkbox" />
+        Use server proxy (recommended)
+      </label>
+    </div>
 
-  <!-- Video Container -->
-  <div id="results" class="video-list"></div>
+    <div id="status" class="status">Loading channels & topics…</div>
+
+    <section id="results" class="grid"></section>
+  </main>
+
+  <footer class="footer">
+    <small>Edit <code>channels.json</code> & <code>topics.json</code> to customize channels/topics.</small>
+  </footer>
 
   <script src="main.js"></script>
 </body>
 </html>
+

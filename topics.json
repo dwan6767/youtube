@@ -1,0 +1,7 @@
+{
+  "casual": ["hobby electronics", "retro computing", "breadboard projects"],
+  "theory": ["circuit theory", "signal processing", "electrical engineering lecture"],
+  "building": ["Arduino project", "PCB build", "soldering tutorial"],
+  "surprise": ["weird electronics", "retro gadgets"],
+  "entertainment": ["electronics shorts", "fun gadgets", "cool hacks"]
+}
